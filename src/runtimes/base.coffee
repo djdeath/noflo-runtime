@@ -3,6 +3,15 @@ EventEmitter = require 'emitter'
 class BaseRuntime extends EventEmitter
   constructor: (@definition) ->
     @graph = null
+    @status =
+      online: false
+      label: 'not started'
+
+    this.on 'status', (status) =>
+      @status = status
+
+  status: () ->
+    @status
 
   setMain: (@graph) ->
 
